@@ -23,6 +23,9 @@
   <button @click="setData" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">jonat</button>
 </template>
 
+
+
+
 <script setup lang="ts">
 import { fechimg, upload } from "./components/api.ts";
 import { ref } from "vue";
@@ -32,6 +35,15 @@ const data = ref(null);
 const file = ref(null);
 const fileload = ref(false);
 const isDefault = ref(true);
+    const tiplar:any={
+      pdf:"https://play-lh.googleusercontent.com/9XKD5S7rwQ6FiPXSyp9SzLXfIue88ntf9sJ9K250IuHTL7pmn2-ZB0sngAX4A2Bw4w",
+      zip:"https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/folder_zip.png",
+        sql: "https://www.shareicon.net/data/2015/09/07/97430_document_512x512.png",
+      html:"https://cdn4.iconfinder.com/data/icons/smashicons-file-types-flat/56/22_-_HTML_File_Flat-512.png",
+      nomalum:"https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png"
+    }
+
+
 
 const fechImgdata = async (responseData: any) => {
   try {
@@ -47,7 +59,7 @@ const xx = (e:any) => {
   isDefault.value = false;
   file.value = e.target.files[0];
   fileload.value = true;
-
+  console.log(file.value.type)
 }
 
 const setData = async (event: any) => {
