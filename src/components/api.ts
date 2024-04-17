@@ -26,6 +26,28 @@ export const upload = (fileInput: any): Promise<string> => {
     });
 };
 
+
+
+
+export const uploadFiles = (fileInput: any) => {
+    if (!fileInput) {
+        console.error("No file selected");
+        return;
+    }
+    console.log(fileInput)
+
+    axios.post("http://192.168.100.241:9999/api/file/upload/public", fileInput)
+        .then((response) => {
+            console.log(response.data);
+           return response.data
+        })
+        .catch((error) => {
+            console.error("Error uploading files:", error);
+        });
+};
+
+
+
 export async function fechimg(data: string) {
     try {
         const response = await axios.get(`http://192.168.100.241:9999/api/file/view-image/${data}`);
