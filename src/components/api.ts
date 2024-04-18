@@ -1,49 +1,36 @@
 import axios from 'axios';
 
 
-export const upload = (fileInput: any): Promise<string> => {
-    return new Promise((resolve, reject) => {
+export const upload = (fileInput: any) => {
         if (!fileInput) {
             console.error("No file selected");
-            reject("No file selected");
             return;
         }
-
         const formdata = new FormData();
         formdata.append("tenantId", "test");
         formdata.append("module", "test");
         formdata.append("fileName", "test");
         formdata.append("file", fileInput);
-
         axios.post("http://192.168.100.241:9999/api/file/upload/public", formdata)
             .then((response) => {
-                resolve(response.data);
+                console.log(response.data);
+                return(response.data);
             })
             .catch((error) => {
                 console.error(error);
-                reject(error);
             });
-    });
 };
 
 
+export const Delete = async (id: any) => {
+    try {
+        const response = await axios.delete(`http://192.168.100.241:9999/api/file/delete/${id}`);
 
-
-export const uploadFiles = (fileInput: any) => {
-    if (!fileInput) {
-        console.error("No file selected");
-        return;
+        return response.data;
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
-    console.log(fileInput)
-
-    axios.post("http://192.168.100.241:9999/api/file/upload/public", fileInput)
-        .then((response) => {
-            console.log(response.data);
-           return response.data
-        })
-        .catch((error) => {
-            console.error("Error uploading files:", error);
-        });
 };
 
 
@@ -59,3 +46,26 @@ export async function fechimg(data: string) {
     }
 }
 
+
+
+export async function uploadkatta(data: any) {
+    if (!data) {
+        console.error("No file selected");
+        return null;
+    }
+
+    try {
+        const formdata = new FormData();
+        formdata.append("tenantId", "test");
+        formdata.append("module", "test");
+        formdata.append("fileName", `test`);
+        formdata.append("file", data);
+
+        const response = await axios.post("http://192.168.100.241:9999/api/file/upload/public", formdata);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        return null;
+    }
+}
