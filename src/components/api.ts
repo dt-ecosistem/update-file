@@ -54,7 +54,6 @@ export async function uploadkatta(data: any) {
         return null;
     }
 
-    try {
         const formdata = new FormData();
         formdata.append("tenantId", "test");
         formdata.append("module", "test");
@@ -63,9 +62,6 @@ export async function uploadkatta(data: any) {
 
         const response = await axios.post("http://192.168.100.241:9999/api/file/upload/public", formdata);
         console.log(response.data);
-        return response.data;
-    } catch (error) {
-        console.error("Error uploading file:", error);
-        return null;
-    }
+        return response;
+
 }
