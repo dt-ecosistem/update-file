@@ -1,15 +1,11 @@
-<script setup>
-import Barchasi from "./views/Main.vue";
-</script>
-
 <template>
-	<Barchasi />
+<!--     <SingleUpload />-->
+  <MultipleUpload />
 </template>
 
-<style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-</style>
+<script setup>
+// import SingleUpload from "./components/SingleUpload.vue";
+import MultipleUpload from "./components/MultipleUpload.vue";
+</script>
+
+<style lang="scss" scoped></style>

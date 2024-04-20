@@ -90,7 +90,7 @@ import type { Ref } from "vue";
 import Notification from "../plugins/Notification";
 import type { AxiosResponse } from "axios";
 import {ElMessage} from "element-plus";
-import {uploadkatta} from "@/api/upload";
+import {uploadkatta} from "@/api/api";
 const isUploaded = ref(false);
 // const store = useUploadStore();
 

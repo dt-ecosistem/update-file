@@ -55,7 +55,7 @@
 import { ref, type Ref } from "vue";
 
 import Notification from "../plugins/Notification";
-import {uploadkatta} from "@/api/upload";
+import {uploadkatta} from "@/api/api";
 
 interface ImageItem {
   image: string;
