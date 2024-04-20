@@ -3,7 +3,7 @@
     <div id="main" class="flex flex-wrap w-[100%] gap-2 p-2 mt-3.5 p-3.5">
       <label
         for="single"
-        class="w-[300px] h-[250px] flex flex-col justify-center items-center cursor-pointer bg-gray-200 rounded text-white border-dashed border-2 border-black"
+        class="w-[300px] h-[250px] flex flex-col justify-center items-center cursor-pointer bg-gray-200 rounded text-white border-dashed border-2 border-gray-400"
         :class="{ 'bg-black shadow-none': !fileName }"
       >
         <input
@@ -14,8 +14,7 @@
           @change="handleFileChange"
         />
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 512 512" id="upload"><path d="M398.1 233.2c0-1.2.2-2.4.2-3.6 0-65-51.8-117.6-115.7-117.6-46.1 0-85.7 27.4-104.3 67-8.1-4.1-17.2-6.5-26.8-6.5-29.5 0-54.1 21.9-58.8 50.5C57.3 235.2 32 269.1 32 309c0 50.2 40.1 91 89.5 91H224v-80h-48.2l80.2-83.7 80.2 83.6H288v80h110.3c45.2 0 81.7-37.5 81.7-83.4 0-45.9-36.7-83.2-81.9-83.3z"></path></svg>
-
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" id="upload-in-cloud"><defs><path id="a" d="M.06 64V.04H64V64z"></path></defs><g fill="none" fill-rule="evenodd"><mask id="b" fill="#fff"><use xlink:href="#a"></use></mask><path fill="#FFFFFE" d="M48 30c0-8.837-7.164-16-16-16-7.498 0-13.773 5.165-15.508 12.126C11.687 26.854 8 30.991 8 36c0 5.523 4.477 10 10 10h8a2 2 0 0 0 2-2v-5.5a1.5 1.5 0 0 0-1.5-1.5h-3.061c-1.472 0-1.883-1.01-.914-2.245l7.713-9.829c.969-1.235 2.555-1.235 3.524 0l7.713 9.829c.969 1.235.558 2.245-.914 2.245H37.5a1.5 1.5 0 0 0-1.5 1.5V44a2 2 0 0 0 2 2h10a8 8 0 0 0 0-16" mask="url(#b)"></path><path fill="#4C5665" d="M48 46H38a2 2 0 0 1-2-2v-5.5a1.5 1.5 0 0 1 1.5-1.5h3.061c1.472 0 1.883-1.01.914-2.245l-7.713-9.829c-.969-1.235-2.555-1.235-3.524 0l-7.713 9.829c-.969 1.235-.558 2.245.914 2.245H26.5a1.5 1.5 0 0 1 1.5 1.5V44a2 2 0 0 1-2 2h-8c-5.523 0-10-4.477-10-10 0-5.009 3.687-9.146 8.492-9.874C18.227 19.165 24.502 14 32 14c8.836 0 16 7.163 16 16a8 8 0 0 1 0 16zM32 0C14.327 0 0 14.327 0 32c0 17.673 14.327 32 32 32 17.673 0 32-14.327 32-32C64 14.327 49.673 0 32 0z" mask="url(#b)"></path></g></svg>
 
         <p class="font-bold text-gray-500">Click to upload </p>
 
