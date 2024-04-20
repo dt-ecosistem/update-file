@@ -1,9 +1,9 @@
 <template>
   <div class="m-10">
-    <div id="main" class="flex flex-wrap w-[100%] gap-2 p-2 mt-3.5">
+    <div id="main" class="flex flex-wrap w-[100%] gap-2 p-2 mt-3.5 p-3.5">
       <label
         for="single"
-        class="w-[200px] h-[200px] flex justify-center items-center relative flex-col text-white bg-black rounded-md cursor-pointer  transition-all"
+        class="w-[300px] h-[250px] flex flex-col justify-center items-center cursor-pointer bg-gray-200 rounded text-white border-dashed border-2 border-black"
         :class="{ 'bg-black shadow-none': !fileName }"
       >
         <input
@@ -13,8 +13,12 @@
           ref="fileInput"
           @change="handleFileChange"
         />
-        <i v-if="!fileName" class="fa-solid fa-upload"></i>
-        <h1 v-if="!fileName">Choose file</h1>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 512 512" id="upload"><path d="M398.1 233.2c0-1.2.2-2.4.2-3.6 0-65-51.8-117.6-115.7-117.6-46.1 0-85.7 27.4-104.3 67-8.1-4.1-17.2-6.5-26.8-6.5-29.5 0-54.1 21.9-58.8 50.5C57.3 235.2 32 269.1 32 309c0 50.2 40.1 91 89.5 91H224v-80h-48.2l80.2-83.7 80.2 83.6H288v80h110.3c45.2 0 81.7-37.5 81.7-83.4 0-45.9-36.7-83.2-81.9-83.3z"></path></svg>
+
+
+        <p class="font-bold text-gray-500">Click to upload </p>
+
         <i
           v-if="isUploaded"
           class="fa-solid fa-square-check text-[35px] absolute top-2 right-2 text-green-500"
@@ -37,7 +41,7 @@
         :disabled="isUploaded || highSize"
         @click="upload()"
         type="submit"
-        class="w-[100px] h-[50px] ml-5 p-3 bg-black rounded text-white hover:bg-amber-700"
+        class="h-[50px]  w-[100px] ml-5 p-3 bg-gray-600  rounded text-white rounded-2xl"
         :class="{
           'hover:bg-yellow-600  cursor-not-allowed': isUploaded || highSize,
         }"
