@@ -86,13 +86,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
-// import { useUploadStore } from "../stores/uploadStore";
 import Notification from "../plugins/Notification";
 import type { AxiosResponse } from "axios";
 import {ElMessage} from "element-plus";
 import {uploadkatta} from "@/api/api";
 const isUploaded = ref(false);
-// const store = useUploadStore();
 
 interface ImageItem {
 	image: string;
