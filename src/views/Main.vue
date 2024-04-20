@@ -1,10 +1,10 @@
 <template>
-   <SingleUpload />
+<!--   <SingleUpload />-->
   <MultipleUpload />
 </template>
 
 <script setup>
-import SingleUpload from "../components/SingleUpload.vue";
+// import SingleUpload from "../components/SingleUpload.vue";
 import MultipleUpload from "../components/MultipleUpload.vue";
 </script>
 

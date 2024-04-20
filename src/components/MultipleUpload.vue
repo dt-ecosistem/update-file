@@ -1,6 +1,6 @@
 <template>
 	<hr />
-	<div id="main" class="flex flex-wrap w-[100%] gap-2 p-2 mt-3.5 p-3.5">
+	<div id="main" class="flex flex-wrap w-[100%] gap-2 p-2 mt-3.5 p-4">
 		<input
 			type="file"
 			class="hidden"
@@ -15,13 +15,13 @@
 			v-for="(item, index) in pictures"
 			@click="reUpload(item)"
 			:key="index"
-			class="w-[200px] h-[200px] relative"
+			class="w-[250px] h-[300px] relative p-3"
 			:title="item.size ? 'Size is too high' : ''"
 		>
 			<i
 				v-if="item.size"
-				class="fa-solid fa-circle-xmark text-[35px] absolute bottom-2 right-2 text-red-500"
-			></i>
+				class="fa-solid fa-circle-xmark text-[15px] absolute bottom-2 right-2 text-red-500"
+			> 20 mg dan katta</i>
 			<i
 				v-if="item.id == 1"
 				class="fa-solid fa-square-check text-[35px] absolute top-0 left-2 text-green-500"
@@ -37,6 +37,7 @@
 				Remove
 			</button>
 			<img :src="item.image" class="max-w-[100%] max-h-[100%]" />
+      <p>{{item.name}}</p>
 		</button>
 
 		<!-- First input -->
@@ -78,6 +79,7 @@
 		>
 			{{ isUploaded ? "loading ..." : "Upload" }}
 		</button>
+
 	</div>
 </template>
 
@@ -87,6 +89,7 @@ import type { Ref } from "vue";
 import { useUploadStore } from "../stores/uploadStore";
 import Notification from "../plugins/Notification";
 import type { AxiosResponse } from "axios";
+import {ElMessage} from "element-plus";
 const isUploaded = ref(false);
 const store = useUploadStore();
 
@@ -95,6 +98,7 @@ interface ImageItem {
 	file: File;
 	size: boolean;
 	id: number;
+  name:string
 }
 
 const fileName: Ref<String | null> = ref("");
@@ -105,12 +109,12 @@ const removeeeeee = (index: number) => {
 	pictures.value.splice(index, 1);
 	console.log(pictures.value);
 };
-
-const handleFileChange = (event: Event): void => {
+ const handleFileChange = (event: Event): void => {
 	const inputElement = event.target as HTMLInputElement;
 	const files: FileList | null = inputElement.files;
 	console.log(files);
 	if (!files) return;
+
 	for (const file of Array.from(files)) {
 		if (file) {
 			fileName.value = file.name;
@@ -123,6 +127,7 @@ const handleFileChange = (event: Event): void => {
 						file,
 						size,
 						id: 0,
+            name:file.name
 					});
 				};
 				reader.readAsDataURL(file);
@@ -134,6 +139,7 @@ const handleFileChange = (event: Event): void => {
 						file,
 						size,
 						id: 0,
+            name:file.name
 					});
 				};
 				reader.readAsDataURL(file);
@@ -144,9 +150,10 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			} else if (fileName.value.includes("mp3")) {
-				pictures.value.push({ image: "/audio.png", file, size, id: 0 });
+				pictures.value.push({ image: "/audio.png", file, size, id: 0 ,name:""});
 			} else if (fileName.value.includes("zip")) {
 				pictures.value.push({
 					image:
@@ -154,6 +161,7 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			} else if (fileName.value.includes("pdf")) {
 				pictures.value.push({
@@ -162,6 +170,7 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			} else if (fileName.value.includes("html")) {
 				pictures.value.push({
@@ -170,6 +179,7 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			} else if (fileName.value.includes("sql")) {
 				pictures.value.push({
@@ -177,6 +187,7 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			} else {
 				pictures.value.push({
@@ -184,6 +195,7 @@ const handleFileChange = (event: Event): void => {
 					file,
 					size,
 					id: 0,
+          name:file.name
 				});
 			}
 		}
@@ -211,7 +223,12 @@ const upload = async () => {
 					isUploaded.value = true;
 					if (res && res.status == 200) {
 						imageItem.id = 1;
+            // ElMessage({
+            //   message: 'Congrats, this is a success message.',
+            //   type: 'success',
+            // })
 					} else {
+            // ElMessage.error('Oops, this is a error message.')
 						imageItem.id = 2;
 					}
 				} catch (e) {
@@ -220,6 +237,7 @@ const upload = async () => {
 			}
 		}
 		isUploaded.value = false;
+
 	} else {
 		Notification("warning", "Choose file", "You have to choose file at least one");
 	}
