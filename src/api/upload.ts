@@ -1,27 +1,19 @@
-import axiosClient from "./apiClient";
-interface ImageItem {
-  image: string;
-  file: File;
-  size: boolean;
-  id: number;
+import axios from "axios";
+
+export async function uploadkatta(data: any) {
+  if (!data) {
+    console.error("No file selected");
+    return null;
+  }
+
+  const formdata = new FormData();
+  formdata.append("tenantId", "test");
+  formdata.append("module", "test");
+  formdata.append("fileName", `test`);
+  formdata.append("file", data);
+
+  const response = await axios.post("http://192.168.100.241:9999/api/file/upload/public", formdata);
+  console.log(response.data);
+  return response;
+
 }
-
-const upload = {
-  uploadSingle(payload: ImageItem) {
-    const data = new FormData();
-    data.append("module", "test");
-    data.append("tenantId", "test");
-    data.append("fileName", "test");
-    data.append("file", payload.file);
-    const url = "file/upload/public";
-    return axiosClient.post(url, data);
-  },
-
-
-  uploadMultiple(payload: ImageItem) {
-    const url = "file/multiple-upload/public";
-    return axiosClient.post(url, payload);
-  },
-};
-
-export default upload;

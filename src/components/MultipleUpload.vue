@@ -86,12 +86,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
-import { useUploadStore } from "../stores/uploadStore";
+// import { useUploadStore } from "../stores/uploadStore";
 import Notification from "../plugins/Notification";
 import type { AxiosResponse } from "axios";
 import {ElMessage} from "element-plus";
+import {uploadkatta} from "@/api/upload";
 const isUploaded = ref(false);
-const store = useUploadStore();
+// const store = useUploadStore();
 
 interface ImageItem {
 	image: string;
@@ -204,7 +205,7 @@ const removeeeeee = (index: number) => {
 
 const reUpload = async (item: ImageItem): Promise<void> => {
 	if (item.id == 2) {
-		const res = await store.uploadSingle(item);
+		const res = await uploadkatta(item);
 		if (res && res.status == 200) {
 			item.id = 1;
 		}
@@ -219,7 +220,7 @@ const upload = async () => {
 			const imageItem = i as ImageItem;
 			if (imageItem.id != 1 && !imageItem.size) {
 				try {
-					const res: AxiosResponse | undefined = await store.uploadSingle(imageItem);
+					const res= await uploadkatta(imageItem.file);
 					isUploaded.value = true;
 					if (res && res.status == 200) {
 						imageItem.id = 1;
@@ -229,10 +230,10 @@ const upload = async () => {
             // })
 					} else {
             // ElMessage.error('Oops, this is a error message.')
-						imageItem.id = 2;
 					}
 				} catch (e) {
 					console.log(e);
+						imageItem.id = 2;
 				}
 			}
 		}

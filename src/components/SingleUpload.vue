@@ -53,9 +53,9 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
-import { useUploadStore } from "../stores/uploadStore";
+
 import Notification from "../plugins/Notification";
-import type { AxiosResponse } from "axios";
+import {uploadkatta} from "@/api/upload";
 
 interface ImageItem {
   image: string;
@@ -64,7 +64,7 @@ interface ImageItem {
   id: number;
 }
 
-const store = useUploadStore();
+
 const fileName = ref("");
 const fileContent = ref("");
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -128,7 +128,7 @@ const upload = async () => {
     data.id=0
     data.size=highSize.value
     data.image=fileContent.value
-    const res:AxiosResponse = await store.uploadSingle(data);
+    const res = await uploadkatta(data.file);
     if (res.status == 200) {
       isUploaded.value = true;
       Notification(
